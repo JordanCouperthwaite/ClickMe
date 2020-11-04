@@ -1,0 +1,27 @@
+{{#b4-page name="InventoryStatusPage"}}
+<div class="row header-buttons">
+  <div class="col">
+    <div class="row h-100 production-schedule-heading">
+      <div class="col">
+        {{> b4-select  name="action" colLabel="col-sm-3" colInput="col-sm-9" items=actions placeholder="Bulk Edit"}}
+      </div>
+      <div class="col">
+        {{> b4-select caption="Filter by" name="filter" colLabel="col-sm-3" colInput="col-sm-9" items=filters}}
+      </div>
+      
+    </div>
+  </div>
+  <div class='col'>
+      <input style='float: right; margin-top: 5px;' placeholder="Search By ItemCode" id="search-itemcode">
+      <div class="input-group date" style="float: right; max-width: 20%;">
+          <input type="text" style="border-radius:16px;" class="form-control scheduledday-datepicker" id="stock-datepicker" name="stock-datepicker" placeholder=""/>
+          <span style="position:absolute; right:8px;top:14px;font-size:23px;" class="la la-calendar"></span>
+      </div>
+  </div> 
+</div>
+</div>
+<div class="row">
+    {{>b4-grid name="inventorystatusgrid"}}
+</div>
+
+{{/b4-page}}

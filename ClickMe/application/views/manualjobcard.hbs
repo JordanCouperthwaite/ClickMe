@@ -1,0 +1,54 @@
+{{#b4-page name="ManualJobCard"}}
+<div class="row header-buttons">
+  <div class="col">
+    <div class="row h-100 production-schedule-heading">
+      <div class="col-sm-3">
+        {{> b4-select  name="action" colLabel="col-sm-3" colInput="col-sm-9" items=actions placeholder="Select"}}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  {{>b4-grid name="manualjobcardgrid"}}
+</div>
+
+
+{{#b4-modal name="ScheduleDayModal" buttonCaption="Add"}}
+  {{#b4-form name="ScheduleDayForm"}}
+    <h6>Please select the day you'd like to schedule the selected Jobs for:</h6>
+    <div class="input-group date" style="padding-top:6px;">
+        <input type="text" style="border-radius:16px;" class="form-control scheduledday-datepicker" id="ScheduleDay" name="ScheduleDay"/>
+        <span style="position:absolute; right:8px;top:14px;font-size:23px;" class="la la-calendar"></span>
+    </div>
+  {{/b4-form}}
+{{/b4-modal}}
+
+{{#b4-modal name="CreateManualJobCardModal" buttonCaption="Create"}}
+  {{#b4-form name="CreateManualJobCardForm"}}
+      {{> b4-input caption="Customer Name" name="CustomerName" required=true colLabel="col-sm-3" colInput="col-sm-9" }}
+      {{> b4-input caption="Purchase Order" name="PurchaseOrder" required=true colLabel="col-sm-3" colInput="col-sm-9" }}
+      <div class="row form-group">
+        <label for="colours-searchselect" class="col-sm-3 control label my auto">Order Colour</label>
+        <div class="col-sm-9">
+          <input class="hidden" id='colours-searchselect' name="colours-searchselect"/>
+        </div>
+      </div>
+      {{> b4-input caption="Order Quantity" name="OrderQuantity" required=true colLabel="col-sm-3" colInput="col-sm-9" }}
+  {{/b4-form}}
+{{/b4-modal}}
+
+{{#b4-modal name="EditManualJobCardModal" buttonCaption="Edit"}}
+  {{#b4-form name="EditManualJobCardForm"}}
+      {{> b4-input caption="Customer Name" name="EditCustomerName" required=true colLabel="col-sm-3" colInput="col-sm-9" }}
+      {{> b4-input caption="Purchase Order" name="EditPurchaseOrder" required=true colLabel="col-sm-3" colInput="col-sm-9" }}
+      <div class="row form-group">
+        <label for="colours-searchselect" class="col-sm-3 control label my auto">Order Colour</label>
+        <div class="col-sm-9">
+          <input class="hidden" id='editcolours-searchselect' name="editcolours-searchselect"/>
+        </div>
+      </div>
+      {{> b4-input caption="Order Quantity" name="EditOrderQuantity" required=true colLabel="col-sm-3" colInput="col-sm-9" }}
+  {{/b4-form}}
+{{/b4-modal}}
+
+{{/b4-page}}

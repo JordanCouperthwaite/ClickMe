@@ -1,0 +1,9 @@
+﻿<div class="row form-group">
+  {{#if caption}}
+    <label for="{{name}}" class="{{colLabel}} control-label my-auto">{{caption}}</label>
+  {{/if}}
+  <div class="{{#if colInput}}{{colInput}}{{else}}col-sm-12{{/if}}">
+    <input type="hidden" name="{{name}}" id="{{name}}" value="{{value}}">
+    <p class="form-control-static">{{text}}</p>
+  </div>
+</div>

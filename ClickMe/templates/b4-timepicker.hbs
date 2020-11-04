@@ -1,0 +1,15 @@
+﻿<div class="row form-group">
+  {{#if caption}}
+    <label for="{{name}}" class="{{colLabel}} control-label my-auto">{{caption}}</label>
+  {{/if}}
+  <div class="{{#if colInput}}{{colInput}}{{else}}col-sm-12{{/if}}">
+    <div class="input-group date">
+      <input type="text" class="form-control b4-timepicker{{#if required}} form-control-required{{/if}}" id="{{name}}" name="{{name}}" value="{{value}}" readonly />
+      <span class="input-group-append my-auto">
+        <span class="input-group-text" style="height: 38px;">
+          <i class="la la-clock-o"></i>
+        </span>
+      </span>
+    </div>
+  </div>
+</div>

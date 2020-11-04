@@ -1,0 +1,43 @@
+{{#b4-page name="DispatchPage"}}
+<div class="row header-buttons">
+  <div class="col">
+    <div class="row h-100 dispatch-schedule-heading">
+      <div class="col">
+        {{> b4-select  name="action" colLabel="col-sm-3" colInput="col-sm-9" items=actions placeholder="Dispatch Edit"}}
+      </div>
+      <div class="col">
+        {{> b4-select  name="filterby" colLabel="col-sm-3" colInput="col-sm-9" items=filterby placeholder="Filter By"}}
+      </div>  
+    </div>
+  </div>
+  <div class="col">
+  </div>
+</div>
+<div class="row">
+  {{>b4-grid name="dispatchgrid"}}
+</div>
+
+<div class="modal" id="bc-post-responsemodal" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Consumption Response</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body" id="bc-post-responsemodal-body" style="overflow-y: scroll; max-height:400px">
+        
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+{{/b4-page}}

@@ -1,0 +1,149 @@
+<div class="daily-schedule">
+  {{#b4-page name="SchedulePage"}}
+  <div class="row daily-schedule-heading">
+    <div class="col-sm-7">
+      <div class="row h-100">
+        {{#each scheduleDays}}
+          <div class="col text-center daily-schedule-day">
+            <div class="row h-100">
+              <div class="col-sm-12 my-auto">
+                <a href="javascript:void(0);" data-value="{{value}}">{{text}}</a>
+              </div>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+    <div class="col-sm-3 text-right my-auto">
+      <div class="row">
+        <div class="col-sm-7">
+          <div class="col-sm-9">
+              <div class="input-group date" style="padding-top:6px;">
+                  <input type="text" style="border-radius:16px;" class="form-control scheduledday-datepicker" id="ScheduledDay" name="ScheduledDay" placeholder="ScheduledDay"/>
+                  <span style="position:absolute; right:8px;top:14px;font-size:23px;" class="la la-calendar"></span>
+              </div>
+          </div>
+        </div>
+        <div class="col-sm-5" style="top: 5px;">
+          {{> b4-select  name="action" items=actions placeholder="Options"}}
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2 text-right my-auto">
+      <button id="AddBreakBtn" class="btn btn-primary">+ Add Break</button>
+    </div>
+  </div>
+
+  <div class="row daily-schedule-ending">
+    <div class="col">
+      <div class="row h-100">
+        <div class="col-3 my-auto text-right">
+          <span><b>Start Time</b></span>
+          <span><input type="text" id="StartTime" class="b4-timepicker text-center" /></span>
+        </div>
+        <div class="col-3 my-auto text-center">
+          <span><b>Last Flight Bar</b></span>
+          <span><label id="LastFlightBarTime">18:00</label></span>
+        </div>
+        <div class="col-2 my-auto">
+          <span><b>Last Wrapping</b></span>
+          <span><label id="LastWrappingTime">18:30</label></span>
+        </div>
+        <div class="col-4 my-auto">
+          <div class="row">
+            <div class="col">
+              <span id="total-m2"><b>Totalm2: </b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{> b4-grid name="schedulegrid" removeGutter=true }}
+  
+  {{#b4-modal name="PhaseJobModal" large=true buttonCaption="Add"}}
+    {{#b4-form name="PhaseJobForm"}}
+      {{> b4-grid name="phasegrid" }}
+    {{/b4-form}}
+  {{/b4-modal}}
+
+  {{#b4-modal name="QcRejectJobModal" large=true buttonCaption="Add"}}
+    {{#b4-form name="QcRejectJobForm"}}
+      {{> b4-grid name="rejectgrid" }}
+    {{/b4-form}}
+  {{/b4-modal}}
+
+  {{#b4-modal name="AddBreakModal" buttonCaption="Add"}}
+    {{#b4-form name="AddBreakForm"}}
+      {{> b4-number caption="Duration of Break" name="DurationOfBreak" required=true colLabel="col-sm-3" colInput="col-sm-9" }}
+    {{/b4-form}}
+  {{/b4-modal}}
+
+
+  {{#b4-modal name="AddColourChangeModal" buttonCaption="Add"}}
+    {{#b4-form name="AddColourChangeForm"}}
+      {{> b4-number caption="Duration of ColourChange" name="DurationOfColourChange" required=true colLabel="col-sm-3" colInput="col-sm-9" }}
+    {{/b4-form}}
+  {{/b4-modal}}
+
+  {{#b4-modal name="ScheduleDayModal" buttonCaption="Add"}}
+    {{#b4-form name="ScheduleDayForm"}}
+      <h6>Please select the day you'd like to schedule the selected Jobs for:</h6>
+      <div class="input-group date" style="padding-top:6px;">
+          <input type="text" style="border-radius:16px;" class="form-control scheduledday-datepicker" id="ScheduleDay" name="ScheduleDay"/>
+          <span style="position:absolute; right:8px;top:14px;font-size:23px;" class="la la-calendar"></span>
+      </div>
+    {{/b4-form}}
+  {{/b4-modal}}
+
+  {{#b4-modal name="CreateBatchModal" buttonCaption="Add"}}
+    {{#b4-form name="CreateBatchForm"}}
+      {{> b4-input caption="Quantity Before" name="QuantityBefore" required=true colLabel="col-sm-3" colInput="col-sm-9" }}
+      {{> b4-input caption="Quantity After" name="QuantityAfter" required=true colLabel="col-sm-3" colInput="col-sm-9" }}
+    {{/b4-form}}
+  {{/b4-modal}}
+
+  {{#b4-modal name="AllocateManualJobCardModal" buttonCaption="Add"}}
+    {{#b4-form name="AllocateManualJobCardForm"}}
+      <div class="row form-group">
+        <label for="jobcards-searchselect" class="col-sm-3 control label my auto">Job Cards: </label>
+        <div class="col-sm-9">
+          <input class="hidden" id='jobcards-searchselect' name="jobcards-searchselect"/>
+        </div>
+      </div>
+      <div class='hidden' id='manualjobcard-allocation'></div>
+    {{/b4-form}}
+  {{/b4-modal}}
+
+  {{#b4-modal name="AdjustRouteModal" buttonCaption="Add"}}
+    {{#b4-form name="AdjustRouteForm"}}
+      <div class="row form-group">
+        <label for="route-searchselect" class="col-sm-3 control label my auto">Route: </label>
+        <div class="col-sm-9">
+          <input class="hidden" id='route-searchselect' name="route-searchselect"/>
+        </div>
+      </div>
+    {{/b4-form}}
+  {{/b4-modal}}
+
+  <div class="modal" id="bc-post-responsemodal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Consumption Response</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body" id="bc-post-responsemodal-body" style="overflow-y: scroll; max-height:400px">
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+  {{/b4-page}}
+</div>

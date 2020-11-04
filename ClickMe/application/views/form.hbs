@@ -1,0 +1,119 @@
+{{#b4-page name="FormPage"}}
+    {{#b4-form name="PageForm"}}
+        {{#b4-tabs}}
+            {{> b4-tab caption="General" name="generalTab" selected=true}}
+            {{> b4-tab caption="Budget" name="budgetTab"}}
+            {{> b4-tab caption="Supporting documents" name="documentsTab"}}
+            {{> b4-tab caption="Project estimate" name="costTab"}}
+            {{> b4-tab caption="Cashout" name="cashflowTab"}}
+            {{> b4-tab caption="Approvers" name="approversTab"}}
+        {{/b4-tabs}}
+        {{#b4-tabpanels}}
+            {{#b4-tabpanel name="generalTab" selected=true}}
+                {{> b4-hidden name="CapexRequestId" value=ID}}
+                {{> b4-select caption="Type of CER" name="CerType" placeholder="Select the type of CER" items=CerTypes required=true}}
+                {{> b4-select caption="Request type" name="RequestType" placeholder="Select the type of request" items=RequestTypes required=true}}
+                {{> b4-select caption="Cost centre" name="Cost_Centre" placeholder="Select the cost centre" items=CostCentres required=true}}
+                {{> b4-input caption="Project name" name="ProjectName" value=ProjectName placeholder="Enter the name of the project" required=true}}
+                {{> b4-datepicker caption="Start date" name="ProjectStartDate" value=ProjectStartDate placeholder="Select start date" required=true}}
+                {{> b4-datepicker caption="Estimated completion date" name="ProjectCompleteDate" value=ProjectCompleteDate placeholder="Select completion date" required=true}}
+                {{> b4-label caption="Duration in months" name="DurationMonths" value=DurationMonths text=DurationMonths }}
+                {{> b4-input caption="CER author" name="CerAuthor" placeholder="If not you, search and select the CER author"}}
+                {{> b4-input caption="Project manager" name="ProjectManager" placeholder="Search and select the project manager" required=true}}
+                {{> b4-textarea caption="Executive summary" name="ExecutiveSummary" value=ExecutiveSummary placeholder="Enter an executive summary" required=true}}
+            {{/b4-tabpanel}}
+
+            {{#b4-tabpanel name="budgetTab"}}
+                {{> b4-select caption="Budget forecast" name="BudgetForecast" value=BudgetForecast placeholder="Select Yes or No" items=YesAndNo required=true}}
+                {{> b4-select caption="Budget start year" name="BudgetStartYear" value=BudgetStartYear placeholder="Select start year" items=BudgetYears required=true}}
+                {{> b4-select caption="Budget end year" name="BudgetEndYear" value=BudgetEndYear placeholder="Select end year" items=BudgetYears required=true}}
+                <div class="row">
+                    <div class="col-md-3">&nbsp;</div>
+                    <div class="col-md-3" style="text-align:center;"><label class="control-label">GBP</label></div>
+                    <div class="col-md-3" style="text-align:center;"><label class="control-label">USD</label></div>
+                    <div class="col-md-3" style="text-align:center;"><label class="control-label">EUR</label></div>
+                </div>
+
+                <div class="form-group has-feedback">
+                    <div class="col-md-3" style="text-align:right;"><label class="control-label">CER Value</label></div>
+                    <div class="col-md-3">
+                        <div class="has-feedback">
+                            <input type="text" class="form-control b4-money" id="CerGbp" name="CerGbp" value="{{CerGbp}}" placeholder="Enter GBP value" />
+                            <i class="fa fa-asterisk form-control-feedback"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="has-feedback">
+                            <input type="text" class="form-control b4-money" id="CerUsd" name="CerUsd" value="{{CerUsd}}" placeholder="Enter USD value" />
+                            <i class="fa fa-asterisk form-control-feedback"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="has-feedback">
+                            <input type="text" class="form-control b4-money" id="CerEur" name="CerEur" value="{{CerEur}}" placeholder="Enter EUR value" />
+                            <i class="fa fa-asterisk form-control-feedback"></i>
+                        </div>
+                    </div>
+                </div>
+            {{/b4-tabpanel}}
+
+            {{#b4-tabpanel name="documentsTab"}}
+                <div class="form-group">
+                    {{#each Documents}}
+                    <div class="row" id="row-DocumentId-{{ID}}">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <a target="_blank" id="DocumentId-{{ID}}" href="{{LongDocumentUrl}}">{{Title}}</a>
+                            <button type="button" class="btn btn-default document-remove"><i class="fa fa-remove"></i></button>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+                {{> b4-file caption="Document #1" name="Document1" required=true}}
+                {{> b4-file caption="Document #2" name="Document2"}}
+                {{> b4-file caption="Document #3" name="Document3"}}
+                {{> b4-file caption="Document #4" name="Document4"}}
+                {{> b4-file caption="Document #5" name="Document5"}}
+                <div class="row">
+                    <div class="col-sm-offset-3 col-sm-9"><button type="button" id="AddMoreFiles" class="btn btn-default">Add more files</button></div>
+                </div>
+            {{/b4-tabpanel}}
+
+            {{#b4-tabpanel name="costTab"}}
+                <div class="row">
+                    <div class="col-md-4">{{> b4-label caption="CER Value" name="CerCostLabel"}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        {{> b4-grid name="ProjectCosts"}}
+                    </div>
+                </div>
+            {{/b4-tabpanel}}
+
+            {{#b4-tabpanel name="cashflowTab"}}
+                <div class="row">
+                    <div class="col-md-4">{{> b4-label caption="CER Value" name="CerCashflowLabel"}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        {{> b4-grid name="CashflowEntries"}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div style="width:800px;height:500px">
+                            <canvas id="CashflowChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            {{/b4-tabpanel}}
+
+            {{#b4-tabpanel name="approversTab"}}
+                {{> b4-input caption="Other VPs" name="OtherVps" placeholder="Search and select additional VPs"}}
+                {{> b4-label caption="CFO" name="CFO" value=CFO.id text=CFO.displayName}}
+                {{> b4-label caption="CEO" name="CEO" value=CEO.id text=CEO.displayName}}
+            {{/b4-tabpanel}}
+        {{/b4-tabpanels}}
+
+        {{> b4-formfooter }}
+    {{/b4-form}}
+{{/b4-page}}

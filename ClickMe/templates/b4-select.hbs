@@ -1,0 +1,16 @@
+﻿<div class="row form-group{{#if required}} has-feedback{{/if}}">
+  {{#if caption}}
+    <label for="{{name}}" class="{{colLabel}} control-label my-auto">{{caption}}</label>
+  {{/if}}
+  <div class="{{#if colInput}}{{colInput}}{{else}}col-sm-12{{/if}}">
+    <select class="form-control b4-select" id="{{name}}" name="{{name}}">
+      <option value="" disabled selected hidden>{{placeholder}}</option>
+      {{#each items}}
+        <option value="{{value}}">{{text}}</option>
+      {{/each}}
+    </select>
+    {{#if required}}
+      <i class="fa fa-asterisk form-control-feedback"></i>
+    {{/if}}
+  </div>
+</div>

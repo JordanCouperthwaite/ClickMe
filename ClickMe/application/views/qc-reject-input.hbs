@@ -1,0 +1,11 @@
+<div id="qc-reject-input" class="row">
+    <div class="col">
+        {{> b4-select caption="Phase Reason" id="PhaseReason" name="PhaseReason" required=true colLabel="col-sm-3" colInput="col-sm-9" items=phasereasons}}
+    </div>
+    <div class="col text-center">
+        {{> b4-checkbox name="IsManualJC" text="Manual JC" checked=true}}
+    </div>
+    <div class="col">
+        {{> b4-input caption="PO#" name="PurchaseReference" colLabel="col-sm-3" colInput="col-sm-9" }}          
+    </div>
+</div>

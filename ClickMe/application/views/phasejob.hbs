@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col text-center">
+        <div id="CurrentJobNumber" class="phase-modal-jobnumber"></div>
+    </div>
+    <div class="col text-center phase-modal-divider">
+        <div id="NewJobNumber" class="phase-modal-jobnumber"></div>
+    </div>
+</div>
+<div class="row" style="height:50px;">
+    <div class="col text-center">
+        <div class="phase-modal-jobnumber">Current Job#</div>
+    </div>
+    <div class="col text-center phase-modal-divider">
+        <div class="phase-modal-jobnumber">New Phased Job#</div>
+    </div>
+</div>
+<div class="row" style="height:65px">
+    <div class="col text-center">
+        <div class="phase-modal-exttobecoated phase-modal-exttobecoated-label">Ext to be coated</div>
+        <div id="CurrentExtToBeCoated" class="phase-modal-exttobecoated phase-modal-exttobecoated-value"></div>
+    </div>
+    <div class="col text-center phase-modal-divider">
+        <div class="phase-modal-exttobecoated phase-modal-exttobecoated-label">Ext to be coated</div>
+        <div class="phase-modal-exttobecoated"><input type="text" id="NewExtToBeCoated" name="NewExtToBeCoated" class="phase-modal-exttobecoated-value b4-number w-100" /></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col text-center">
+        <div id="CurrentTotalM2" class="phase-modal-totalm2"></div>
+    </div>
+    <div class="col text-center phase-modal-divider">
+        <div id="NewTotalM2" class="phase-modal-totalm2 phase-modal-totalm2-value"></div>
+    </div>
+</div>
+<div class="row" style="height:55px;">
+    <div class="col text-center">
+        <div class="phase-modal-totalm2">Total M2</div>
+    </div>
+    <div class="col text-center phase-modal-divider">
+        <div class="phase-modal-totalm2">Total M2</div>
+    </div>
+</div>
+<div class="row" style="height:75px;">
+    <div class="col text-center">
+        <div class="phase-modal-numberofflightbars phase-modal-numberofflightbars-label"># of flight bars</div>
+        <div id="CurrentNumberOfFlightBars" class="phase-modal-numberofflightbars phase-modal-numberofflightbars-value"></div>
+    </div>
+    <div class="col text-center phase-modal-divider">
+        <div class="phase-modal-numberofflightbars phase-modal-numberofflightbars-label"># of flight bars</div>
+        <div class="phase-modal-numberofflightbars"><input type="text" id="NewNumberOfFlightBars" name="NewNumberOfFlightBars" class="phase-modal-numberofflightbars-value b4-number w-100" /></div>
+    </div>
+</div>
+<div class="row" style="height:46px;">
+    <div class="col text-center">
+        <div>{{> b4-label caption="Route" name="CurrentManual" colLabel="col-sm-3" colInput="col-sm-9" }}</div>
+    </div>
+    <div class="col text-center phase-modal-divider">
+        {{> b4-select caption="Manual" id="NewManual" name="NewManual" required=true colLabel="col-sm-3" colInput="col-sm-9" items=manual}}
+    </div>
+</div>

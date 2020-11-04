@@ -1,0 +1,10 @@
+﻿<div class="form-group">
+    <label for="{{name}}" class="col-sm-3 control-label">{{caption}}</label>
+    <div class="col-sm-9">
+        {{#each items}}
+        <label class="radio-inline">
+            <input type="radio" name="{{../name}}" id="{{../name}}{{@index}}" value="{{value}}"> {{text}}
+        </label>
+        {{/each}}
+    </div>
+</div>

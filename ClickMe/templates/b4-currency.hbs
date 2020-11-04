@@ -1,0 +1,21 @@
+﻿<div class="form-group{{#if required}} has-feedback{{/if}}">
+    <label for="{{name}}" class="col-sm-3 control-label">{{caption}}</label>
+    <div class="col-sm-9">
+        <div class="input-group">
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span id="{{name}}CurrencyLabel">GBP</span>&nbsp;<span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    {{#each items}}
+                    <li><a href="javascript:void(0);">{{value}}</a></li>
+                    {{/each}}
+                </ul>
+            </div><!-- /btn-group -->
+            <input type="hidden" id="{{name}}Currency" name="{{name}}Currency" value="GBP" />
+            <input type="text" class="form-control az-currency" id="{{name}}" name="{{name}}" value="{{value}}" placeholder="{{placeholder}}" />
+            <span class="input-group-addon">.00</span>
+            {{#if required}}
+            <i class="fa fa-asterisk form-control-feedback"></i>
+            {{/if}}
+        </div>
+    </div>
+</div>
